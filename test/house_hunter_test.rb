@@ -36,4 +36,9 @@ class TestHouseHunter < Minitest::Test
     assert_equal 542706, regular_down_payment.min_house_price
   end
 
+  def test_price_filter
+    prices = HouseHunter.new.price_filter
+    assert_equal 1000, prices.length
+  end
+
 end

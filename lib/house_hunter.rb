@@ -50,6 +50,12 @@ class HouseHunter
     @houses
   end
 
+  def price_filter
+    @houses.select do |house|
+      house.price <= max_house_price && house.price >= min_house_price
+    end
+  end
+
 end
 
 # Assumptions:
