@@ -12,16 +12,28 @@ class HouseHunter
     load_csv(listings_path)
     max_loan_principle
     max_house_price
+    min_loan_principle
+    min_house_price
   end
 
   def max_loan_principle
     payment = @monthly_payment * 1.05
-    loan_principle(payment)
+    @max_principle = loan_principle(payment)
+  end
+
+  def min_loan_principle
+    payment = @monthly_payment * 0.8
+    @min_principle = loan_principle(payment)
   end
 
   def max_house_price
     max_from_down_payment = (@down_payment * 20) + @down_payment
     max_from_down_payment < (@max_principle + @down_payment) ? max_from_down_payment : @max_principle + @down_payment
+  end
+
+  def min_house_price
+    min_from_down_payment = (@down_payment * 20) + @down_payment
+    min_from_down_payment < (@min_principle + @down_payment) ? min_from_down_payment : @min_principle + @down_payment
   end
 
   def loan_principle(payment)

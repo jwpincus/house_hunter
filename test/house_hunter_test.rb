@@ -14,14 +14,26 @@ class TestHouseHunter < Minitest::Test
 
   def test_max_principal
     max_price = HouseHunter.new.max_loan_principle
-    assert_equal 628383, max_price
+    assert_equal 659802, max_price
   end
 
   def test_max_price
     low_down_payment = HouseHunter.new(0.04, 30, 1, 3000, 2000)
     regular_down_payment = HouseHunter.new(0.04, 30, 40000, 3000, 2000)
     assert_equal 21, low_down_payment.max_house_price
-    assert_equal 668383, regular_down_payment.max_house_price
+    assert_equal 699802, regular_down_payment.max_house_price
+  end
+
+  def test_min_principal
+    min_price = HouseHunter.new.min_loan_principle
+    assert_equal 502706, min_price
+  end
+
+  def test_min_price
+    low_down_payment = HouseHunter.new(0.04, 30, 1, 3000, 2000)
+    regular_down_payment = HouseHunter.new(0.04, 30, 40000, 3000, 2000)
+    assert_equal 21, low_down_payment.min_house_price
+    assert_equal 542706, regular_down_payment.min_house_price
   end
 
 end
