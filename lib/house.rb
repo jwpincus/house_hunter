@@ -14,7 +14,7 @@ class House
   end
 
   def delta_down_percent
-    down_percent >= 20.0 ? 20.0 : (20.0 - down_percent)
+    down_percent >= 20.0 ? 0 : (20.0 - down_percent)
   end
 
 end
