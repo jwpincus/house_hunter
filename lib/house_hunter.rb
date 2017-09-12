@@ -15,9 +15,8 @@ class HouseHunter
   end
 
   def max_loan_principle
-    effective_interest =  @interest / 12.0
-    @max_principle = (@monthly_payment / effective_interest) * (1 - (1 + effective_interest)**(-(@loan_length * 12)))
-    @max_principle = @max_principle.to_i
+    payment = @monthly_payment * 1.05
+    loan_principle(payment)
   end
 
   def max_house_price
@@ -25,7 +24,11 @@ class HouseHunter
     max_from_down_payment < (@max_principle + @down_payment) ? max_from_down_payment : @max_principle + @down_payment
   end
 
-
+  def loan_principle(payment)
+    effective_interest =  @interest / 12.0
+    principle = (payment / effective_interest) * (1 - (1 + effective_interest)**(-(@loan_length * 12)))
+    principle.to_i
+  end
 
   def load_csv(path)
     @houses = []
@@ -39,6 +42,7 @@ end
 
 # Assumptions:
 # 1. No upper bound on sq. ft.
+# 2. can go 5% over on payment, or 20% under
 
 
 #  Spec: A user has $40,000 in savings, she would like a maximum monthly mortgage payment around (a) $3,000 per month, (b) would prefer a home with around 2,000 squarefeet and (c) would like to buy homes that give her as much down % possible (e.g. a home with 20% down is optimal compared to 5%). Given the CSV (attached) of homes for sale, can you output homes sorted closest to the user’s preferences in descending order? The output can be of any format you choose (CSV, JSON, HTML, etc.). You can write this recommender in any of: Ruby, Python, Javascript or Java.
