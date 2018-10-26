@@ -100,6 +100,11 @@ class HouseHunter
 
 end
 
+# Assumptions:
+# 1. No upper bound on sq. ft., lower bound 10% lower than requested, but houses will be penalized for going over.
+# 2. User will go 5% over on payment, or 20% under.
+# 3. User will put all savings down as 5%-20% of house costs
+# 4. A house that would have a down payment greater than 20% won't be pnealized in the sort, one with less than 20% will
 
 
 #  Spec: A user has $40,000 in savings, she would like a maximum monthly mortgage payment around (a) $3,000 per month, (b) would prefer a home with around 2,000 squarefeet and (c) would like to buy homes that give her as much down % possible (e.g. a home with 20% down is optimal compared to 5%). Given the CSV (attached) of homes for sale, can you output homes sorted closest to the user’s preferences in descending order? The output can be of any format you choose (CSV, JSON, HTML, etc.). You can write this recommender in any of: Ruby, Python, Javascript or Java.
